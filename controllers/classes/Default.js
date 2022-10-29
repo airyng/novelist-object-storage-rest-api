@@ -41,7 +41,7 @@ class DefaultController extends BaseController {
       const items = await this.model.find()
       res.json(items)
     } catch (err) {
-      res.status(500).json({ message: err.message })
+      res.status(500).json({ message: err.message, status: 500 })
     }
   }
 
@@ -51,7 +51,7 @@ class DefaultController extends BaseController {
       const newItem = await item.save()
       res.status(201).json(newItem)
     } catch (err) {
-      res.status(400).json({ message: err.message })
+      res.status(400).json({ message: err.message, status: 400 })
     }
   }
 
@@ -73,7 +73,7 @@ class DefaultController extends BaseController {
       const updatedItem = await res.item.save()
       res.json(updatedItem)
     } catch (err) {
-      res.status(400).json({ message: err.message })
+      res.status(400).json({ message: err.message, status: 400 })
     }
   }
 
@@ -85,9 +85,9 @@ class DefaultController extends BaseController {
   async delete (req, res) {
     try {
       await res.item.remove()
-      res.json({ message: `Deleted ${this.model.name}` })
+      res.json({ message: `Deleted ${this.model.name}`, status: 200 })
     } catch (err) {
-      res.status(500).json({ message: err.message })
+      res.status(500).json({ message: err.message, status: 500 })
     }
   }
 }

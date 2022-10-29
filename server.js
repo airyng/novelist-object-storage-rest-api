@@ -5,6 +5,7 @@ const express = require('express'),
       mongoose = require('mongoose'),
       router = require('./router'),
       corsMiddleware = require('./middlewares/corsMiddleware'),
+      fileUpload = require('express-fileupload'),
       port = process.env.PORT || 3000
 
 if (process.env.DATABASE_URL) {
@@ -16,6 +17,14 @@ if (process.env.DATABASE_URL) {
   console.log('[WARNING] Can\'t connect to Database without DATABASE_URL env-variable')
 
 app.use(express.json())
+
+app.use(fileUpload({
+  limits: { fileSize: process.env.FILE_UPLOAD_LIMIT * 1024 * 1024 },
+  useTempFiles : true,
+  tempFileDir : '/tmp/',
+  uriDecodeFileNames: true,
+  abortOnLimit: true
+}))
 
 app.use(corsMiddleware)
 

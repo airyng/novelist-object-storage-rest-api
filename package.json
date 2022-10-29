@@ -11,8 +11,10 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^4.16.4",
+    "express-fileupload": "^1.4.0",
     "jsonwebtoken": "^8.5.1",
     "migrate-mongoose": "^4.0.0",
+    "mime-types": "^2.1.35",
     "mongoose": "^5.5.7"
   },
   "devDependencies": {
